@@ -1,0 +1,107 @@
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  background-color: #0f172a;
+  color: #f8fafc;
+  margin: 0;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+h1 {
+  margin-bottom: 25px;
+  color: #fde047;
+}
+
+.controls {
+  margin-bottom: 15px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+button {
+  background-color: #1e293b;
+  color: #f8fafc;
+  border: 1px solid #475569;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background-color: #334155;
+  border-color: #64748b;
+}
+
+button:focus-visible {
+  outline: 2px solid #fde047;
+  outline-offset: 2px;
+}
+
+button.start {
+  background-color: #eab308;
+  border-color: #0f172a;
+  color: #0f172a;
+}
+
+button.start:hover {
+  background-color: #ca8a04;
+}
+
+button.start.running {
+  background-color: #ef4444;
+  color: #f8fafc;
+}
+
+button.start.running:hover {
+  background-color: #dc2626;
+}
+
+canvas {
+  max-width: 100%;
+  border: 2px solid #334155;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.5);
+  cursor: crosshair;
+  touch-action: none;
+}
+
+.stats {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+.rules {
+  max-width: 700px;
+  margin-top: 30px;
+  padding: 20px 24px;
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  line-height: 1.6;
+}
+
+.rules h3 {
+  margin-top: 0;
+  color: #fde047;
+}
+
+.rules li {
+  margin-bottom: 8px;
+}
+
+.rules strong {
+  color: #fde047;
+}
