@@ -9,9 +9,6 @@ npm install
 npm run dev
 ```
 
-1. `npm install`
-2. `npm run dev`
-
 ## Controls
 
 | Control                       | What it does                                   |
