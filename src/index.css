@@ -3,7 +3,10 @@ html {
 }
 
 body {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
   background-color: #0f172a;
   color: #f8fafc;
   margin: 0;
@@ -30,7 +33,6 @@ h1 {
   margin-bottom: 25px;
   color: #fde047;
   text-align: center;
-  font-size: clamp(2rem, 5vw, 3rem);
 }
 
 .controls {
@@ -51,7 +53,6 @@ button {
   cursor: pointer;
   font-weight: 600;
   transition: all 0.2s;
-  min-height: 44px;
 }
 
 button:hover {
@@ -151,4 +152,3 @@ canvas {
     padding: 16px 18px;
   }
 }
-
