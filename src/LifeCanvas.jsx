@@ -24,14 +24,20 @@ export default function LifeCanvas({ grid, setCell }) {
   }, [grid]);
 
   function getCellFromEvent(event) {
-    const bounds = canvasRef.current.getBoundingClientRect();
-    const col = Math.floor((event.clientX - bounds.left) / CELL_SIZE);
-    const row = Math.floor((event.clientY - bounds.top) / CELL_SIZE);
+    const canvas = canvasRef.current;
+    if (!canvas) return null;
+
+    const bounds = canvas.getBoundingClientRect();
+    const x = (event.clientX - bounds.left) * (canvas.width / bounds.width);
+    const y = (event.clientY - bounds.top) * (canvas.height / bounds.height);
+    const col = Math.floor(x / CELL_SIZE);
+    const row = Math.floor(y / CELL_SIZE);
     const onGrid = row >= 0 && row < ROWS && col >= 0 && col < COLS;
     return onGrid ? { row, col } : null;
   }
 
   function paint(event) {
+    event.preventDefault();
     const cell = getCellFromEvent(event);
     if (cell) setCell(cell.row, cell.col, paintValue.current);
   }
@@ -39,6 +45,7 @@ export default function LifeCanvas({ grid, setCell }) {
   function handlePointerDown(event) {
     isDrawing.current = true;
     event.currentTarget.setPointerCapture(event.pointerId);
+    event.preventDefault();
 
     const cell = getCellFromEvent(event);
     if (cell) paintValue.current = grid[cell.row][cell.col] === 1 ? 0 : 1;
@@ -62,6 +69,7 @@ export default function LifeCanvas({ grid, setCell }) {
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={stopDrawing}
+      onPointerLeave={stopDrawing}
       onPointerCancel={stopDrawing}
     />
   );
