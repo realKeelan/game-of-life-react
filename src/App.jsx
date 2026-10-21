@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import LifeCanvas from "./LifeCanvas.jsx";
 import {
   TICK_MS,
@@ -6,14 +6,14 @@ import {
   createGrid,
   nextGeneration,
   spellWord,
-} from "./life.js";
+} from "./life.jsx";
 
 export default function App() {
   const [grid, setGrid] = useState(() => spellWord("YELLOW"));
   const [generation, setGeneration] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
 
-  const liveCount = useMemo(() => countLiveCells(grid), [grid]);
+  const liveCount = countLiveCells(grid);
 
   useEffect(() => {
     if (!isRunning) return;
@@ -29,7 +29,8 @@ export default function App() {
   function setCell(row, col, value) {
     setGrid((current) => {
       if (current[row][col] === value) return current;
-      const next = current.map((r) => r.slice());
+      const next = current.slice();
+      next[row] = current[row].slice();
       next[row][col] = value;
       return next;
     });
@@ -39,6 +40,11 @@ export default function App() {
     setIsRunning(false);
     setGeneration(0);
     setGrid(newGrid);
+  }
+
+  function stepGeneration() {
+    setGrid((current) => nextGeneration(current));
+    setGeneration((current) => current + 1);
   }
 
   return (
@@ -51,6 +57,9 @@ export default function App() {
           onClick={() => setIsRunning((running) => !running)}
         >
           {isRunning ? "Pause" : "Start"}
+        </button>
+        <button onClick={stepGeneration} disabled={isRunning}>
+          Step
         </button>
         <button onClick={() => resetTo(spellWord("YELLOW"))}>
           Reset to 'YELLOW'
